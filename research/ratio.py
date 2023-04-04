@@ -15,7 +15,7 @@ class Ratio():
                   
                   ) -> pd.DataFrame:
 
-        rationed_df = self.__apply_ratio_calc(useful_df.median(), coint_df)
+        rationed_df = self.__apply_ratio_calc(useful_df.median(numeric_only=True), coint_df)
         rationed_df.to_csv('./data/analyzed/final_output.csv', index=False)
         return rationed_df
 
