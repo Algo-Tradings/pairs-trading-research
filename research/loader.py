@@ -7,6 +7,7 @@ class Loader():
     def __init__(self) -> None:
         self.client = Client()
         self.symbols = self.__get_symbols()
+        self.df = pd.DataFrame()
     
         
     def __get_symbols(self,) -> list:
@@ -19,9 +20,9 @@ class Loader():
     
         
     def get_historical_data(self, timeframe:str='1h', interval:str='2 years ago') -> pd.DataFrame:
-        hist_df = self.__set_data_merge(self.__get_multi_data(timeframe,interval))
-        hist_df.to_csv('./data/raw/historical_data.csv', index=True)
-        return hist_df
+        self.df = self.__set_data_merge(self.__get_multi_data(timeframe,interval))
+        self.df.to_csv('./data/raw/historical_data.csv', index=True)
+        return self.df
         
 
     def __get_multi_data(self, timeframe, interval) -> list:
