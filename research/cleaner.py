@@ -5,10 +5,10 @@ path = os.path.dirname(__file__)
 
 class Cleaner():
 
-    def get_cleared_data(self, df: pd.DataFrame) -> pd.DataFrame:
+    def get_cleared_data(self, hist_df: pd.DataFrame) -> pd.DataFrame:
         
         cleared_df = self.__remove_young_currencies(
-            self.__set_data_fill(self.__get_data_close(df)))
+            self.__set_data_fill(self.__get_data_close(hist_df)))
         
         cleared_df.to_csv(os.path.join(path,'..','data/processing/cleaner_output.csv'))
         return cleared_df
