@@ -2,6 +2,10 @@
 import pandas as pd
 from binance.client import Client
 import os
+
+import ccxt
+
+
 path = os.path.dirname(__file__)
 class Loader():
     
@@ -21,7 +25,11 @@ class Loader():
         
     def get_historical_data(self, timeframe:str, interval:str) -> pd.DataFrame:
         """
+        :param timeframe: e.g. '1d', '4h', '3S', '15m' 
+        :type: str
         
+        :param interval: e.g. '1 year ago', '10days ago', 'datetime'
+        :type: str
         """
         hist_df = self.__set_data_merge(self.__get_multi_data(timeframe,interval))
         hist_df.to_csv(os.path.join(path,'..', 'data/raw/historical_data.csv'), index=True)
