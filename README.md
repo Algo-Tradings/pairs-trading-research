@@ -1,5 +1,5 @@
 # pairs-trading-research
- Research Environment to Find Best Pairs Trading Currencies
+ Research Environment to Find Best Pairs Trading Cryptocurrencies
 
 Hi! 
 I made this repo to be simple but very useful.
