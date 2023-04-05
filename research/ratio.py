@@ -1,13 +1,9 @@
 
 import pandas as pd
 import numpy as np
-import os
-path = os.path.dirname(__file__)
 pd.options.mode.chained_assignment = None
 
 class Ratio():
-    def __init__(self) -> None:
-        self.df = pd.read_csv(os.path.join(path, "..", 'data/processing/cleaner_output.csv'), index_col=0)
 
     def get_ratio(self, coint_df: pd.DataFrame =
                   pd.read_csv(

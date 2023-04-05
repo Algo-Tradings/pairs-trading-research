@@ -1,17 +1,15 @@
 import pandas as pd
-import os
 
-path = os.path.dirname(__file__)
+
 class Cleaner():
-    def __init__(self) -> None:
-        self.df = pd.read_csv(os.path.join(path, "..", 'data/raw/historical_data.csv'), header=[0, 1], index_col=0)
 
-    def get_useful_data(self,) -> pd.DataFrame:
-        self.df = self.__remove_young_currencies(
-            self.__set_data_fill(self.__get_data_close(self.df)))
+    def get_useful_data(self, df: pd.DataFrame = pd.read_csv('./data/raw/historical_data.csv', header=[0, 1], index_col=0)) -> pd.DataFrame:
         
-        self.df.to_csv(os.path.join(path, "..", './data/processing/cleaner_output.csv'))
-        return self.df
+        useful_df = self.__remove_young_currencies(
+            self.__set_data_fill(self.__get_data_close(df)))
+        
+        useful_df.to_csv('./data/processing/cleaner_output.csv')
+        return useful_df
 
     def __get_data_close(self, df: pd.DataFrame) -> pd.DataFrame:
         closes_df = df.loc[:, df.columns.get_level_values(1).isin(['Close'])]
