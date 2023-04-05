@@ -1,7 +1,8 @@
 
 import pandas as pd
 from binance.client import Client
-
+import os
+path = os.path.dirname(__file__)
 class Loader():
     
     def __init__(self) -> None:
@@ -18,9 +19,12 @@ class Loader():
                                                             all(coin not in s['symbol'] for coin in unused_coins)]
     
         
-    def get_historical_data(self, timeframe:str='1h', interval:str='2 years ago') -> pd.DataFrame:
+    def get_historical_data(self, timeframe:str, interval:str) -> pd.DataFrame:
+        """
+        
+        """
         hist_df = self.__set_data_merge(self.__get_multi_data(timeframe,interval))
-        hist_df.to_csv('./data/raw/historical_data.csv', index=True)
+        hist_df.to_csv(os.path.join(path,'..', 'data/raw/historical_data.csv'), index=True)
         return hist_df
         
 
